@@ -1,0 +1,24 @@
+
+.weather-box {
+    position: relative;
+    width: 500px;
+    height: 600px;
+    margin: 15% auto auto auto;
+    border: 1px solid mediumpurple;
+    border-radius: 20px;
+}
+.weather-icon {
+    position: absolute;
+    font-size: 10em;
+    margin-top: 50px;
+    margin-left: 50px;
+    color: purple;
+}
+.temp {
+    position: absolute;
+    top: 90px;
+    right: 50px;
+    color: purple;
+    font: bold 6em "Libre Baskerville", sans-serif;
+}
+
