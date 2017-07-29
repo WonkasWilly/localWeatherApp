@@ -21,4 +21,17 @@
     color: purple;
     font: bold 6em "Libre Baskerville", sans-serif;
 }
-
+.info {
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    top: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: purple;
+}
+#get-weather {
+    position: absolute;
+    left: 200px;
+    top: 400px;
+}
