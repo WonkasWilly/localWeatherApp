@@ -1,18 +1,13 @@
-function getWeather() {
-    var lat = '';
-    var long = '';
-    function success(position) {
-        lat = position.coords.latitude;
-        long = position.coords.longitude;
-        console.log(lat);
-    }
-    function error () {
-        alert('Something went wrong and we were unable to get your location.');
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error);
-    console.log(lat);
-
-
-}
-
+$(function() {
+   function success (position) {
+       console.log('GPS coordinates');
+       var lat = position.coords.latitude;
+       var long = position.coords.longitude;
+       console.log('Lat: ' + lat);
+       console.log('Long: ' + long);
+   }
+   function error () {
+       alert('Something went wrong.');
+   }
+   navigator.geolocation.getCurrentPosition(success, error);
+});
