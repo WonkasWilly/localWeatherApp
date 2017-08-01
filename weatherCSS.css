@@ -1,5 +1,13 @@
-body {
-    background-image: url("https://i.imgur.com/WJFzrOG.png");
+.b1 {
+    background: url("https://i.imgur.com/WJFzrOG.png") no-repeat;
+    background-size: cover;
+    transition: background-image 2s;
+    -webkit-transition: background-image 2s;
+}
+.b2 {
+    background: url("https://i.imgur.com/qlgoLVk.png") no-repeat;
+    background-size: cover;
+    -webkit-transition: background-image 2s;
 }
 
 .weather-box {
