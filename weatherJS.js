@@ -18,12 +18,43 @@ $(function() {
                $('#location').text(location);
                $('#weather-desc').text(weatherDesc);
                $('.temp').text(kelvinToFaren).append(farhen);
+               console.log('This is the API this project is using:' + 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&APPID=89110c6d8ecedeaf507af6708c1cac08');
+               switch(weatherDesc){
+                   case 'Snow':
+                       insertIcon('day-snow');
+                       break;
+
+                   case 'Clouds':
+                       console.log('clouds');
+                       insertIcon('day-cloudy');
+                       break;
+
+                   case 'Thunderstorm':
+                       insertIcon('day-thunderstorm');
+                       break;
+
+                   case 'Clear':
+                       insertIcon('day-sunny');
+                       break;
+
+                   case 'Rain':
+                       insertIcon('day-rain');
+                       break;
+
+                   case 'Drizzle':
+                       insertIcon('wi-sprinkle');
+                       break;
+               }
            }
        });
    }
 
    function error () {
        alert('Sorry, it looks like something went wrong!');
+   }
+
+   function insertIcon (icon) {
+       $('div.weather-icon').html("<i class='wi wi-" + icon + "'></i>");
    }
 
    function toCelc() {
@@ -47,40 +78,61 @@ $(function() {
 
        if (currentClass) {
            currentClass.className = 'b2';
+           randomImage();
        }
        else {
            currentClass = document.querySelector('body.b2');
            currentClass.className = 'b1';
+           randomImage();
        }
        return currentClass;
     }
-    // ---------------------------------------------------------------------------------------------------------------
+
+    function randomImage() {
+        var allImages =  [
+            'https://i.imgur.com/bLxcjh3.png',
+            'https://i.imgur.com/i8viCPK.png',
+            'https://i.imgur.com/SYY2mJz.png',
+            'https://i.imgur.com/qlgoLVk.png',
+            'https://i.imgur.com/UZWkzL5.png',
+            'https://i.imgur.com/8K6mZ1j.png',
+            'https://i.imgur.com/h2DlPU1.png',
+            'https://i.imgur.com/xChy58V.png',
+            'https://i.imgur.com/3TkFymp.png',
+            'https://i.imgur.com/GqfEdJC.png',
+            'https://i.imgur.com/FUAY5i8.png',
+            'https://i.imgur.com/6y5DJ0E.jpg',
+            'https://i.imgur.com/qBoO5S9.png',
+            'https://i.imgur.com/XzIV8Qk.png',
+            'https://i.imgur.com/F3PkBNT.png',
+            'https://i.imgur.com/XNVVvnx.jpg'
+        ];
+        var randomURL = allImages[randomNum(0, allImages.length)];
+        $('body.b1').css({
+                "background": "url(" + randomURL + ")",
+                "background-repeat": "no-repeat",
+                "background-size": "cover",
+                "transition": "background-image 2s",
+                "-webkit-transition": "background-image 2s"
+        });
+
+        $('body.b2').css({
+            "background": "url(" + randomURL + ")",
+            "background-repeat": "no-repeat",
+            "background-size": "cover",
+            "transition": "background-image 2s",
+            "-webkit-transition": "background-image 2s"
+        });
+
+    };
+    // -----------------------------------------------------------------Code Starts here-------------------------------------------------------------------------
 
     var currentUnit = 'Fahrenheit';
-    var allImages =  [
-        'https://i.imgur.com/bLxcjh3.png',
-        'https://i.imgur.com/i8viCPK.png',
-        'https://i.imgur.com/SYY2mJz.png',
-        'https://i.imgur.com/qlgoLVk.png',
-        'https://i.imgur.com/UZWkzL5.png',
-        'https://i.imgur.com/8K6mZ1j.png',
-        'https://i.imgur.com/h2DlPU1.png',
-        'https://i.imgur.com/xChy58V.png',
-        'https://i.imgur.com/3TkFymp.png',
-        'https://i.imgur.com/GqfEdJC.png',
-        'https://i.imgur.com/FUAY5i8.png',
-        'https://i.imgur.com/6y5DJ0E.jpg',
-        'https://i.imgur.com/qBoO5S9.png',
-        'https://i.imgur.com/XzIV8Qk.png',
-        'https://i.imgur.com/F3PkBNT.png',
-        'https://i.imgur.com/XNVVvnx.jpg'
-    ];
-    var imageNum = (randomNum(0, allImages.length));
-    var setImageTo = allImages[imageNum];
-    console.log(setImageTo);
+
 
    $('#weather-button').click(function(){
        navigator.geolocation.getCurrentPosition(success, error);
+       updateTransition();
    });
 
    $('.temp').click(function() {
@@ -93,7 +145,5 @@ $(function() {
            currentUnit = 'Fahrenheit';
        }
    });
-
-   window.setInterval(updateTransition, 3000);
 
 });
